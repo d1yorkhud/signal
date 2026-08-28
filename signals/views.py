@@ -39,3 +39,10 @@ def contactPageView(request):
         
     }
     return render(request, 'news/contact.html', context)
+
+
+def aboutusPageView(request):
+    context = {
+
+    }
+    return render(request, 'news/about-us.html', context)
