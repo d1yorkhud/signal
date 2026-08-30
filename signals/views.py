@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from .models import News, Category
+from .forms import ContactForm
 
 
 
@@ -35,8 +37,12 @@ def homeView(request):
 
 
 def contactPageView(request):
+    form = ContactForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return HttpResponse("<h2> Thanks for contacting us!")
     context = {
-        
+        "form": form
     }
     return render(request, 'news/contact.html', context)
 
