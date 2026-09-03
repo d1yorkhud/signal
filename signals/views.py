@@ -76,7 +76,11 @@ class ContactPageView(TemplateView):
 
 
 
+def categoryPageView(request):
+    context = {
 
+    }
+    return render(request, 'news/catagory.html', context)
 
 
 
