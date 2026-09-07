@@ -29,11 +29,13 @@ def news_detail(request, id):
 def homeView(request):
     news_list = News.published.all().order_by('-publish_time')[:10]
     categories = Category.objects.all()
-    world_news = News.published.all().filter(category__name="World")[:5]
+    world_news = News.published.all().filter(category__name="World").order_by("-publish_time")[1:6]
+    world_main = News.published.filter(category__name="World").order_by("-publish_time")[0]
     context = {
         'news_list': news_list,
         "categories": categories,
         "world_news": world_news,
+        "world_main": world_main,
     }
 
     return render(request, 'news/home.html', context)
