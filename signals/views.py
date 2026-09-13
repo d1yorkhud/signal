@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import News, Category
 from .forms import ContactForm
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 
 
@@ -39,6 +39,24 @@ def homeView(request):
     }
 
     return render(request, 'news/home.html', context)
+
+
+
+#implementing homeView with class
+class HomePageView(ListView):
+    model = News
+    template_name = 'news/home.html'
+    context_object_name = 'news'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = self.model.objects.all()
+        context['news_list'] = News.published.all().order_by('-publish_time')[:10]
+        context['world_news'] = News.published.all().filter(category__name="World").order_by("-publish_time")[1:6]
+        context['world_main'] = News.published.filter(category__name="World").order_by("-publish_time")[0]
+        return context
+
+
 
 
 # def contactPageView(request):
