@@ -31,11 +31,23 @@ def homeView(request):
     categories = Category.objects.all()
     world_news = News.published.all().filter(category__name="World").order_by("-publish_time")[1:6]
     world_main = News.published.filter(category__name="World").order_by("-publish_time")[0]
+    tech = News.published.all().filter(category__name="Technology").order_by("-publish_time")[:6]
+    econ = News.published.all().filter(category__name="Economics").order_by("-publish_time")[:6]
+    edu = News.published.all().filter(category__name="Eductaion").order_by("-publish_time")[:6]
+    sports = News.published.all().filter(category__name="Sports").order_by("-publish_time")[:6]
+    finance = News.published.all().filter(category__name="Finance").order_by("-publish_time")[:6]
+
+
     context = {
         'news_list': news_list,
         "categories": categories,
         "world_news": world_news,
         "world_main": world_main,
+        "tech" : tech,
+        "econ" : econ,
+        "edu" : edu,
+        "sports" : sports,
+        "finance" : finance,
     }
 
     return render(request, 'news/home.html', context)
