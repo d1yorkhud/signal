@@ -331,10 +331,10 @@
                         <!-- Breaking News Widget -->
                         <div class="breaking-news-widget">
                             <div class="widget-title">
-                                <h5>breaking news</h5>
+                                <h5>Sports News</h5>
                             </div>
                             <!-- Single Breaking News Widget -->
-                            <div class="single-breaking-news-widget">
+                            <!-- <div class="single-breaking-news-widget">
                                 <img src="{% static 'images/blog-img/bn-1.jpg' %}" alt="">
                                 <div class="breakingnews-title">
                                     <p>breaking news</p>
@@ -342,17 +342,19 @@
                                 <div class="breaking-news-heading gradient-background-overlay">
                                     <h5 class="font-pt">China leads new global skyscraper record</h5>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Single Breaking News Widget -->
+                             {% for sport in sports %}
                             <div class="single-breaking-news-widget">
-                                <img src="{% static 'images/blog-img/bn-2.jpg' %}" alt="">
+                                <img src="{{ sport.image.url }}" alt="">
                                 <div class="breakingnews-title">
-                                    <p>breaking news</p>
+                                    <p>{{ sport.category.name }}</p>
                                 </div>
                                 <div class="breaking-news-heading gradient-background-overlay">
-                                    <h5 class="font-pt">Can a zebra crossing change its stripes?</h5>
+                                    <h5  class="font-pt"> <a href="{% url 'news_detail_page' sport.pk %}" style="color: white;"> {{ sport.title }}</a></h5>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
 
                         <!-- Don't Miss Widget -->
