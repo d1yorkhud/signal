@@ -35,7 +35,7 @@ def homeView(request):
     econ = News.published.all().filter(category__name="Economics").order_by("-publish_time")[:6]
     edu = News.published.all().filter(category__name="Eductaion").order_by("-publish_time")[:6]
     sports = News.published.all().filter(category__name="Sports").order_by("-publish_time")[:2]
-    finance = News.published.all().filter(category__name="Finance").order_by("-publish_time")[:6]
+    finance = News.published.all().filter(category__name="Finance").order_by("-publish_time")[:4]
 
 
     context = {
