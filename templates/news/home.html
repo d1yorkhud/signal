@@ -360,38 +360,21 @@
                         <!-- Don't Miss Widget -->
                         <div class="donnot-miss-widget">
                             <div class="widget-title">
-                                <h5>Don't miss</h5>
+                                <h5>Education</h5>
                             </div>
+                            {% for educ in edu %}
                             <!-- Single Don't Miss Post -->
                             <div class="single-dont-miss-post d-flex mb-30">
                                 <div class="dont-miss-post-thumb">
-                                    <img src="{% static 'images/blog-img/dm-1.jpg' %}" alt="">
+                                    <img src="{{ educ.image.url }}" alt="">
                                 </div>
                                 <div class="dont-miss-post-content">
-                                    <a href="#" class="font-pt">EU council reunites</a>
-                                    <span>Nov 29, 2017</span>
+                                    <a href="{% url 'news_detail_page' educ.pk %}" class="font-pt">{{ educ.title }}</a>
+                                    <span>{{ educ.publish_time }}</span>
                                 </div>
                             </div>
-                            <!-- Single Don't Miss Post -->
-                            <div class="single-dont-miss-post d-flex mb-30">
-                                <div class="dont-miss-post-thumb">
-                                    <img src="{% static 'images/blog-img/dm-2.jpg' %}" alt="">
-                                </div>
-                                <div class="dont-miss-post-content">
-                                    <a href="#" class="font-pt">A new way to travel the world</a>
-                                    <span>March 29, 2016</span>
-                                </div>
-                            </div>
-                            <!-- Single Don't Miss Post -->
-                            <div class="single-dont-miss-post d-flex mb-30">
-                                <div class="dont-miss-post-thumb">
-                                    <img src="{% static 'images/blog-img/dm-3.jpg' %}" alt="">
-                                </div>
-                                <div class="dont-miss-post-content">
-                                    <a href="#" class="font-pt">Why choose a bank?</a>
-                                    <span>March 29, 2016</span>
-                                </div>
-                            </div>
+                            {% endfor %}
+
                         </div>
                         <!-- Advert Widget -->
                         <div class="advert-widget">
@@ -420,133 +403,124 @@
         </div>
         <!-- Main Content Area End -->
 
-        <!-- Catagory Posts Area Start -->
-        <div class="gazette-catagory-posts-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <!-- Single Catagory Post -->
-                        <div class="gazette-single-catagory-post">
-                            <div class="single-catagory-post-thumb mb-15">
-                                <img src="{% static 'images/blog-img/12.jpg' %}" alt="">
-                            </div>
-                            <!-- Post Tag -->
-                            <div class="gazette-post-tag">
-                                <a href="#">Video</a>
-                            </div>
-                            <h5><a href="#" class="font-pt">Save the eniroment with this step</a></h5>
-                            <span>Nov 29, 2017</span>
-                        </div>
-                        <!-- Single Catagory Post -->
-                        <div class="gazette-single-catagory-post">
-                            <h5><a href="#" class="font-pt">Protest to be anounced in January</a></h5>
-                            <span>Nov 29, 2017</span>
-                        </div>
-                        <!-- Single Catagory Post -->
-                        <div class="gazette-single-catagory-post">
-                            <h5><a href="#" class="font-pt">10 Bills that the Congress in voting</a></h5>
-                            <span>Nov 29, 2017</span>
-                        </div>
-                        <!-- Single Catagory Post -->
-                        <div class="gazette-single-catagory-post">
-                            <h5><a href="#" class="font-pt">The narcissism of Donald Trump</a></h5>
-                            <span>Nov 29, 2017</span>
-                        </div>
+        
+        <!-- Category Posts Area Start -->
+
+<div class="gazette-catagory-posts-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- COLUMN 1 -->
+            <div class="col-12 col-md-4">
+
+                {% for article in tech|slice:":3" %}
+
+                <div class="gazette-single-catagory-post">
+
+                    {% if forloop.first %}
+                    <div class="single-catagory-post-thumb mb-15">
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}">
                     </div>
-                    <div class="col-12 col-md-4">
-                        <div class="row">
-                            <div class="col-12 col-md-6">
-                                <!-- Single Catagory Post -->
-                                <div class="gazette-single-catagory-post">
-                                    <div class="single-catagory-post-thumb mb-15">
-                                        <img src="{% static 'images/blog-img/14.jpg' %}" alt="">
-                                    </div>
-                                    <!-- Post Tag -->
-                                    <div class="gazette-post-tag">
-                                        <a href="#">Others</a>
-                                    </div>
-                                    <h5><a href="#" class="font-pt">11 hottest toys for this holiday season</a></h5>
-                                    <span>Nov 29, 2017</span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Single Catagory Post -->
-                                <div class="gazette-single-catagory-post">
-                                    <div class="single-catagory-post-thumb mb-15">
-                                        <img src="{% static 'images/blog-img/15.jpg' %}" alt="">
-                                    </div>
-                                    <!-- Post Tag -->
-                                    <div class="gazette-post-tag">
-                                        <a href="#">Video</a>
-                                    </div>
-                                    <h5><a href="#" class="font-pt">Get this good feeling about life</a></h5>
-                                    <span>Nov 29, 2017</span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Single Catagory Post -->
-                                <div class="gazette-single-catagory-post">
-                                    <div class="single-catagory-post-thumb mb-15">
-                                        <img src="{% static 'images/blog-img/16.jpg' %}" alt="">
-                                    </div>
-                                    <!-- Post Tag -->
-                                    <div class="gazette-post-tag">
-                                        <a href="#">Interview</a>
-                                    </div>
-                                    <h5><a href="#" class="font-pt">Get this good feeling about life</a></h5>
-                                    <span>Nov 29, 2017</span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Single Catagory Post -->
-                                <div class="gazette-single-catagory-post">
-                                    <div class="single-catagory-post-thumb mb-15">
-                                        <img src="{% static 'images/blog-img/17.jpg' %}" alt="">
-                                    </div>
-                                    <!-- Post Tag -->
-                                    <div class="gazette-post-tag">
-                                        <a href="#">Video</a>
-                                    </div>
-                                    <h5><a href="#" class="font-pt">11 hottest toys for this holiday season</a></h5>
-                                    <span>Nov 29, 2017</span>
-                                </div>
-                            </div>
-                        </div>
+                    {% endif %}
+
+                    <div class="gazette-post-tag">
+                        <a href="#">{{ article.category.name }}</a>
                     </div>
-                    <div class="col-12 col-md-4">
-                        <!-- Single Catagory Post -->
-                        <div class="gazette-single-catagory-post">
-                            <div class="single-catagory-post-thumb mb-15">
-                                <img src="{% static 'images/blog-img/13.jpg' %}" alt="">
-                            </div>
-                            <!-- Post Tag -->
-                            <div class="gazette-post-tag">
-                                <a href="#">Video</a>
-                            </div>
-                            <h5><a href="#" class="font-pt">10 Bills that the Congress in voting</a></h5>
-                            <span>Nov 29, 2017</span>
-                        </div>
-                        <!-- Single Catagory Post -->
-                        <div class="gazette-single-catagory-post">
-                            <h5><a href="#" class="font-pt">Blair can't save Britain from Brexit</a></h5>
-                            <span>Nov 29, 2017</span>
-                        </div>
-                        <!-- Single Catagory Post -->
-                        <div class="gazette-single-catagory-post">
-                            <h5><a href="#" class="font-pt">Save the eniroment with this step</a></h5>
-                            <span>Nov 29, 2017</span>
-                        </div>
-                        <!-- Single Catagory Post -->
-                        <div class="gazette-single-catagory-post">
-                            <h5><a href="#" class="font-pt">Protest to be anounced in January</a></h5>
-                            <span>Nov 29, 2017</span>
-                        </div>
-                    </div>
+
+                    <h5>
+                        <a href="{% url 'news_detail_page' article.pk %}" class="font-pt">
+                            {{ article.title }}
+                        </a>
+                    </h5>
+
+                    <span>{{ article.publish_time }}</span>
+
                 </div>
+
+                {% endfor %}
+
             </div>
+
+
+            <!-- COLUMN 2 -->
+            <div class="col-12 col-md-4">
+
+                <div class="row">
+
+                    {% for article in tech|slice:"3:6" %}
+
+                    <div class="col-12 col-md-6">
+
+                        <div class="gazette-single-catagory-post">
+
+                            <div class="single-catagory-post-thumb mb-15">
+                                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                            </div>
+
+                            <div class="gazette-post-tag">
+                                <a href="#">{{ article.category.name }}</a>
+                            </div>
+
+                            <h5>
+                                <a href="{% url 'news_detail_page' article.pk %}" class="font-pt">
+                                    {{ article.title }}
+                                </a>
+                            </h5>
+
+                            <span>{{ article.publish_time }}</span>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- COLUMN 3 -->
+            <div class="col-12 col-md-4">
+
+                {% for article in tech|slice:"6:8" %}
+
+                <div class="gazette-single-catagory-post">
+
+                    {% if forloop.first %}
+                    <div class="single-catagory-post-thumb mb-15">
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                    </div>
+                    {% endif %}
+
+                    <div class="gazette-post-tag">
+                        <a href="#">{{ article.category.name }}</a>
+                    </div>
+
+                    <h5>
+                        <a href="{% url 'news_detail_page' article.pk %}" class="font-pt">
+                            {{ article.title }}
+                        </a>
+                    </h5>
+
+                    <span>{{ article.publish_time }}</span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
         </div>
-    </section>
-    <!-- Catagory Posts Area End -->
+
+    </div>
+
+</div>
+
+<!-- Category Posts Area End -->
+
 
     <!-- Video Posts Area Start -->
     <section class="gazatte-video-post-area section_padding_100_70 bg-gray">

@@ -31,9 +31,9 @@ def homeView(request):
     categories = Category.objects.all()
     world_news = News.published.all().filter(category__name="World").order_by("-publish_time")[1:6]
     world_main = News.published.filter(category__name="World").order_by("-publish_time")[0]
-    tech = News.published.all().filter(category__name="Technology").order_by("-publish_time")[:6]
+    tech = News.published.all().filter(category__name="Technology").order_by("-publish_time")[:8]
     econ = News.published.all().filter(category__name="Economics").order_by("-publish_time")[:6]
-    edu = News.published.all().filter(category__name="Eductaion").order_by("-publish_time")[:6]
+    edu = News.published.all().filter(category__name="Education").order_by("-publish_time")[:3]
     sports = News.published.all().filter(category__name="Sports").order_by("-publish_time")[:2]
     finance = News.published.all().filter(category__name="Finance").order_by("-publish_time")[:4]
 
