@@ -17,8 +17,8 @@ def news_list(request):
 
 
 
-def news_detail(request, id):
-    news = get_object_or_404(News, id=id, status=News.Status.Published)
+def news_detail(request, news):
+    news = get_object_or_404(News, slug=news, status=News.Status.Published)
     context = {
         "news":news
     }

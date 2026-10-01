@@ -38,7 +38,7 @@
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
                                     {% for news in news_list %}
-                                    <li><a href="{% url 'news_detail_page' news.pk %}">{{news.title | truncatewords:5 }}</a></li>
+                                    <li><a href="{{ news.get_absolute_url }}">{{news.title | truncatewords:5 }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -222,7 +222,7 @@
                 <div class="tags">
                     <a href="#">{{ news.category.name }}</a>
                 </div>
-                <h3><a href="{% url 'news_detail_page' news.pk %}" class="font-pt">{{news.title | truncatewords:5 }}</a></h3>
+                <h3><a href="{{ news.get_absolute_url }}" class="font-pt">{{news.title | truncatewords:5 }}</a></h3>
                 <div class="date">
                     <a href="#">{{ news.publish_time }}</a>
                 </div>
@@ -240,7 +240,7 @@
                 <ul class="marquee-content-items">
                     {% for news in news_list %}
                     <li>
-                        <a href="{% url 'news_detail_page' news.pk %}"><span class="latest-news-time">{{news.publish_time}}</span> {{news.title | truncatewords:5 }} </a>
+                        <a href="{{ news.get_absolute_url }}"><span class="latest-news-time">{{news.publish_time}}</span> {{news.title | truncatewords:5 }} </a>
                     </li>
                     
                     {% endfor %}
@@ -273,7 +273,7 @@
                         <!-- Reading More -->
                         <div class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
                             <div class="post-continue-btn">
-                                <a href="{% url 'news_detail_page' world_main.pk %}" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                <a href="{{ world_main.get_absolute_url }}" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                             </div>
                             <div class="post-share-btn-group">
                                 <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
@@ -300,29 +300,14 @@
                                 <div class="gazette-post-tag">
                                     <a href="#">{{ world.category.name }}</a>
                                 </div>
-                                <h3><a href="{% url 'news_detail_page' world.pk %}" class="font-pt mb-2">{{ world.title }}</a></h3>
+                                <h3><a href="{{ world.get_absolute_url }}" class="font-pt mb-2">{{ world.title }}</a></h3>
                                 <span class="gazette-post-date mb-2">{{ world.publish_time }}</span>
                                 <a href="#" class="post-total-comments">3 Comments</a>
                                 <p>{{ world.body | truncatewords:30 }}</p>
                             </div>
                         </div>
                         {% endfor %}
-                        <!-- Single Today Post -->
-                        <!-- <div class="gazette-single-todays-post d-md-flex align-items-start mb-50">
-                            <div class="todays-post-thumb">
-                                <img src="{% static 'images/blog-img/3.jpg' %}" alt="">
-                            </div>
-                            <div class="todays-post-content"> -->
-                                <!-- Post Tag -->
-                                <!-- <div class="gazette-post-tag">
-                                    <a href="#">Life</a>
-                                </div>
-                                <h3><a href="#" class="font-pt mb-2">Homeless man steals $350,000 </a></h3>
-                                <p class="gazette-post-date mb-2">March 29, 2016</p>
-                                <a href="#" class="post-total-comments">3 Comments</a>
-                                <p>Aliquam quis convallis enim. Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.</p>
-                            </div>
-                        </div> -->
+                        
                     </div>
                 </div>
 
@@ -333,16 +318,7 @@
                             <div class="widget-title">
                                 <h5>Sports News</h5>
                             </div>
-                            <!-- Single Breaking News Widget -->
-                            <!-- <div class="single-breaking-news-widget">
-                                <img src="{% static 'images/blog-img/bn-1.jpg' %}" alt="">
-                                <div class="breakingnews-title">
-                                    <p>breaking news</p>
-                                </div>
-                                <div class="breaking-news-heading gradient-background-overlay">
-                                    <h5 class="font-pt">China leads new global skyscraper record</h5>
-                                </div>
-                            </div> -->
+                            
                             <!-- Single Breaking News Widget -->
                              {% for sport in sports %}
                             <div class="single-breaking-news-widget">
@@ -351,7 +327,7 @@
                                     <p>{{ sport.category.name }}</p>
                                 </div>
                                 <div class="breaking-news-heading gradient-background-overlay">
-                                    <h5  class="font-pt"> <a href="{% url 'news_detail_page' sport.pk %}" style="color: white;"> {{ sport.title }}</a></h5>
+                                    <h5  class="font-pt"> <a href="{{ sport.get_absolute_url }}" style="color: white;"> {{ sport.title }}</a></h5>
                                 </div>
                             </div>
                             {% endfor %}
@@ -369,7 +345,7 @@
                                     <img src="{{ educ.image.url }}" alt="">
                                 </div>
                                 <div class="dont-miss-post-content">
-                                    <a href="{% url 'news_detail_page' educ.pk %}" class="font-pt">{{ educ.title }}</a>
+                                    <a href="{{ educ.get_absolute_url }}" class="font-pt">{{ educ.title }}</a>
                                     <span>{{ educ.publish_time }}</span>
                                 </div>
                             </div>
@@ -430,7 +406,7 @@
                     </div>
 
                     <h5>
-                        <a href="{% url 'news_detail_page' article.pk %}" class="font-pt">
+                        <a href="{{ article.get_absolute_url }}" class="font-pt">
                             {{ article.title }}
                         </a>
                     </h5>
@@ -464,7 +440,7 @@
                             </div>
 
                             <h5>
-                                <a href="{% url 'news_detail_page' article.pk %}" class="font-pt">
+                                <a href="{{ article.get_absolute_url }}" class="font-pt">
                                     {{ article.title }}
                                 </a>
                             </h5>
@@ -500,7 +476,7 @@
                     </div>
 
                     <h5>
-                        <a href="{% url 'news_detail_page' article.pk %}" class="font-pt">
+                        <a href="{{ article.get_absolute_url }}" class="font-pt">
                             {{ article.title }}
                         </a>
                     </h5>
@@ -546,7 +522,7 @@
                                         <div class="gazette-post-tag">
                                             <a href="#">{{ finance.category.name }}</a>
                                         </div>
-                                        <h2><a href="{% url 'news_detail_page' finance.pk %}" class="font-pt mb-15">{{ finance.title }}</a></h2>
+                                        <h2><a href="{{ finance.get_absolute_url }}" class="font-pt mb-15">{{ finance.title }}</a></h2>
                                         <p class="editorial-post-date mb-15">{{ finance.publish_time }}</p>
                                         <p>{{ finance.body | truncatewords:30}}</p>
                                     </div>
