@@ -126,3 +126,42 @@ def aboutusPageView(request):
 
     }
     return render(request, 'news/about-us.html', context)
+
+
+
+
+
+class WorldPageView(ListView):
+    model = News
+    template_name = 'news/world.html'
+    context_object_name = 'world_news'
+
+
+class TechPageView(ListView):
+    model = News
+    template_name = 'news/tech.html'
+    context_object_name = 'tech_news'
+
+
+class EconPageView(ListView):
+    model = News
+    template_name = 'news/econ.html'
+    context_object_name = 'econ_news'
+
+
+class EduPageView(ListView):
+    model = News
+    template_name = 'news/edu.html'
+    context_object_name = 'edu_news'
+
+
+class SportsPageView(ListView):
+    model = News
+    template_name = 'news/sports.html'
+    context_object_name = 'sports_news'
+
+
+class FinancePageView(ListView):
+    model = News
+    template_name = 'news/finance.html'
+    context_object_name = 'finance_news'
