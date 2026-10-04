@@ -136,11 +136,19 @@ class WorldPageView(ListView):
     template_name = 'news/world.html'
     context_object_name = 'world_news'
 
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name="World")
+        return news
+
 
 class TechPageView(ListView):
     model = News
     template_name = 'news/tech.html'
     context_object_name = 'tech_news'
+
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name="Technology")
+        return news
 
 
 class EconPageView(ListView):
@@ -148,11 +156,19 @@ class EconPageView(ListView):
     template_name = 'news/econ.html'
     context_object_name = 'econ_news'
 
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name="Economics")
+        return news
+
 
 class EduPageView(ListView):
     model = News
     template_name = 'news/edu.html'
     context_object_name = 'edu_news'
+
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name="Education")
+        return news
 
 
 class SportsPageView(ListView):
@@ -160,8 +176,16 @@ class SportsPageView(ListView):
     template_name = 'news/sports.html'
     context_object_name = 'sports_news'
 
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name="Sports")
+        return news
+
 
 class FinancePageView(ListView):
     model = News
     template_name = 'news/finance.html'
     context_object_name = 'finance_news'
+
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name="Finance")
+        return news
