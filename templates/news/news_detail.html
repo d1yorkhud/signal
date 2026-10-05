@@ -1,13 +1,691 @@
+
+
+    {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>Signal - Detail Page</title>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News detail page</title>
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="{% static 'images/core-img/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
+
 <body>
-    <h1>{{news.title}}</h1>
-    <p>Published date: {{news.publish_time}}</p>
-    <p>{{news.body | linebreaks}}</p>
+
+   
+
+    <header class="header-area">
+
+        <!-- Top Header -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+
+                    <div class="col-12 col-md-6">
+                        <div class="breaking-news-area">
+                            <h5 class="breaking-news-title">Breaking news</h5>
+
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    {% for news in news_list %}
+                                    <li>
+                                        <a href="{{ news.get_absolute_url }}">
+                                            {{ news.title|truncatewords:5 }}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="stock-news-area">
+                         
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Middle Header -->
+        <div class="middle-header">
+            <div class="container h-100">
+
+                <div class="row h-100 align-items-center">
+
+                    <div class="col-12 col-md-4">
+
+                        <div class="logo-area">
+
+                            <a href="{% url 'home_page' %}">
+                                <img src="{% static 'images/core-img/logo.png' %}" alt="logo">
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-md-8">
+
+                        <div class="header-advert-area">
+
+                            <a href="#">
+                                <img src="{% static 'images/bg-img/top-advert.png' %}"
+                                     alt="header-add">
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Bottom Header -->
+        <div class="bottom-header">
+
+            <div class="container h-100">
+
+                <div class="row h-100 align-items-center">
+
+                    <div class="col-12">
+
+                        <div class="main-menu">
+
+                            <nav class="navbar navbar-expand-lg">
+
+                                <button class="navbar-toggler"
+                                        type="button"
+                                        data-toggle="collapse"
+                                        data-target="#gazetteMenu">
+
+                                    <i class="fa fa-bars"></i> Menu
+
+                                </button>
+
+                                <div class="collapse navbar-collapse"
+                                     id="gazetteMenu">
+
+                                    <ul class="navbar-nav mr-auto">
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               href="{% url 'home_page' %}">
+                                                Home
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               href="{% url 'world_news_page' %}">
+                                                World
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               href="{% url 'tech_news_page' %}">
+                                                Technology
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               href="{% url 'econ_news_page' %}">
+                                                Economics
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               href="{% url 'edu_news_page' %}">
+                                                Education
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               href="{% url 'sports_news_page' %}">
+                                                Sports
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               href="{% url 'finance_news_page' %}">
+                                                Finance
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                    <div class="header-search-form mr-auto">
+
+                                        <form action="#">
+
+                                            <input type="search"
+                                                   placeholder="Input your keyword then press enter..."
+                                                   id="search"
+                                                   name="search">
+
+                                            <input class="d-none"
+                                                   type="submit"
+                                                   value="submit">
+
+                                        </form>
+
+                                    </div>
+
+                                    <div id="searchbtn">
+                                        <i class="fa fa-search"
+                                           aria-hidden="true"></i>
+                                    </div>
+
+                                </div>
+
+                            </nav>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+<!-- Main Content Area Start -->
+<section class="main-content-wrapper section_padding_100">
+
+    <div class="container">
+
+        <div class="row">
+
+        
+<!-- LEFT SIDE - NEWS ARTICLE -->
+<div class="col-12 col-lg-9">
+
+    <article class="single-post">
+
+        <!-- Category -->
+        <div class="gazette-post-tag mb-15">
+            <a href="#">
+                {{ news.category.name }}
+            </a>
+        </div>
+
+        <!-- Title -->
+        <h1 class="font-pt" style="font-size: 42px; line-height: 1.2; margin-bottom: 15px;">
+            {{ news.title }}
+        </h1>
+
+        <!-- Published Date -->
+        <div class="gazette-post-date mb-30">
+            Published on {{ news.publish_time|date:"F d, Y" }}
+        </div>
+
+        <!-- Main Image -->
+        <div class="blog-post-thumbnail mb-40">
+            <img
+                src="{{ news.image.url }}"
+                alt="{{ news.title }}"
+                style="width: 100%; height: auto;"
+            >
+        </div>
+
+        <!-- Article Body -->
+        <div class="single-post-content">
+
+            <p style="font-size: 18px; line-height: 1.8;">
+                {{ news.body|linebreaks }}
+            </p>
+
+        </div>
+
+    </article>
+
+</div>
+
+
+
+
+            <!-- ============================= -->
+            <!-- RIGHT SIDE - SIDEBAR -->
+            <!-- ============================= -->
+
+            <div class="col-12 col-lg-3 col-md-6">
+
+                <div class="sidebar-area">
+
+
+                    <!-- ========================= -->
+                    <!-- SPORTS NEWS -->
+                    <!-- ========================= -->
+
+                    <div class="breaking-news-widget">
+
+                        <div class="widget-title">
+                            <h5>Sports News</h5>
+                        </div>
+
+                        {% for sport in sports %}
+
+                        <div class="single-breaking-news-widget">
+
+                            <a href="{{ sport.get_absolute_url }}">
+                                <img src="{{ sport.image.url }}" alt="{{ sport.title }}">
+                            </a>
+
+                            <div class="breakingnews-title">
+                                <p>{{ sport.category.name }}</p>
+                            </div>
+
+                            <div class="breaking-news-heading gradient-background-overlay">
+
+                                <h5 class="font-pt">
+                                    <a href="{{ sport.get_absolute_url }}" style="color: white;">
+                                        {{ sport.title }}
+                                    </a>
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+                        {% empty %}
+
+                        <p>No sports news available.</p>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- EDUCATION NEWS -->
+                    <!-- ========================= -->
+
+                    <div class="donnot-miss-widget">
+
+                        <div class="widget-title">
+                            <h5>Education</h5>
+                        </div>
+
+                        {% for educ in edu %}
+
+                        <div class="single-dont-miss-post d-flex mb-30">
+
+                            <div class="dont-miss-post-thumb">
+
+                                <a href="{{ educ.get_absolute_url }}">
+                                    <img src="{{ educ.image.url }}" alt="{{ educ.title }}">
+                                </a>
+
+                            </div>
+
+                            <div class="dont-miss-post-content">
+
+                                <a href="{{ educ.get_absolute_url }}" class="font-pt">
+                                    {{ educ.title }}
+                                </a>
+
+                                <span>
+                                    {{ educ.publish_time }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        {% empty %}
+
+                        <p>No education news available.</p>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- ADVERTISEMENT -->
+                    <!-- ========================= -->
+
+                    <div class="advert-widget">
+
+                        <div class="widget-title">
+                            <h5>Advert</h5>
+                        </div>
+
+                        <div class="advert-thumb mb-30">
+
+                            <a href="#">
+                                <img
+                                    src="{% static 'images/bg-img/add.png' %}"
+                                    alt="Advertisement"
+                                >
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- SUBSCRIBE -->
+                    <!-- ========================= -->
+
+                    <div class="subscribe-widget">
+
+                        <div class="widget-title">
+                            <h5>Subscribe</h5>
+                        </div>
+
+                        <div class="subscribe-form">
+
+                            <form action="#">
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="subs_email"
+                                    placeholder="Your Email"
+                                >
+
+                                <button type="submit">
+                                    Subscribe
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Main Content Area End -->
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    {% static 'images/bg-img/4.jpg' as footer_bg %}
+
+    <footer class="footer-area bg-img background-overlay"
+            style="background-image: url('{{ footer_bg }}');">
+
+        <div class="top-footer-area section_padding_100_70">
+
+            <div class="container">
+
+                <div class="row">
+
+
+                    <!-- Categories -->
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+
+                        <div class="single-footer-widget">
+
+                            <div class="footer-widget-title">
+
+                                <h4 class="font-pt">
+                                    Categories
+                                </h4>
+
+                            </div>
+
+                            <ul class="footer-widget-menu">
+
+                                {% for category in categories %}
+
+                                <li>
+
+                                    <a href="#">
+                                        {{ category.name }}
+                                    </a>
+
+                                </li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Signal -->
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+
+                        <div class="single-footer-widget">
+
+                            <div class="footer-widget-title">
+
+                                <h4 class="font-pt">
+                                    Signal
+                                </h4>
+
+                            </div>
+
+                            <ul class="footer-widget-menu">
+
+                                <li>
+                                    <a href="{% url 'home_page' %}">
+                                        Home
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{% url 'contact_page' %}">
+                                        Contact
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{% url 'all_news_list' %}">
+                                        All News
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- News -->
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+
+                        <div class="single-footer-widget">
+
+                            <div class="footer-widget-title">
+
+                                <h4 class="font-pt">
+                                    News
+                                </h4>
+
+                            </div>
+
+                            <ul class="footer-widget-menu">
+
+                                <li><a href="#">Latest News</a></li>
+                                <li><a href="#">World</a></li>
+                                <li><a href="#">Technology</a></li>
+                                <li><a href="#">Sports</a></li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- About -->
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+
+                        <div class="single-footer-widget">
+
+                            <div class="footer-widget-title">
+
+                                <h4 class="font-pt">
+                                    About
+                                </h4>
+
+                            </div>
+
+                            <ul class="footer-widget-menu">
+
+                                <li><a href="#">About Signal</a></li>
+                                <li><a href="#">Our Team</a></li>
+                                <li><a href="#">Privacy</a></li>
+                                <li><a href="#">Terms</a></li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Contact -->
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+
+                        <div class="single-footer-widget">
+
+                            <div class="footer-widget-title">
+
+                                <h4 class="font-pt">
+                                    Contact
+                                </h4>
+
+                            </div>
+
+                            <ul class="footer-widget-menu">
+
+                                <li>
+                                    <a href="{% url 'contact_page' %}">
+                                        Contact Us
+                                    </a>
+                                </li>
+
+                                <li><a href="#">Email</a></li>
+                                <li><a href="#">Social Media</a></li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- More -->
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+
+                        <div class="single-footer-widget">
+
+                            <div class="footer-widget-title">
+
+                                <h4 class="font-pt">
+                                    More
+                                </h4>
+
+                            </div>
+
+                            <ul class="footer-widget-menu">
+
+                                <li><a href="#">Archives</a></li>
+                                <li><a href="#">Authors</a></li>
+                                <li><a href="#">Newsletter</a></li>
+                                <li><a href="#">Help</a></li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="bottom-footer-area">
+
+            <div class="container h-100">
+
+                <div class="row h-100 align-items-center justify-content-center">
+
+                    <div class="col-12">
+
+                        <div class="copywrite-text">
+
+                            <p>
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                Signal. All rights reserved.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/active.js' %}"></script>
+
 </body>
-</html> 
+</html>
