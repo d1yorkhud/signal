@@ -184,12 +184,31 @@
                                                 <a class="dropdown-item" href="{% url 'contact_page' %}">Contact</a>
                                             </div>
                                         </li>
-                                        {% for category in categories %}
+                                        
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">{{category.name}}</a>
+                                            <a class="nav-link" href="{% url 'world_news_page' %}">World</a>
                                         </li>
                                        
-                                        {% endfor %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'tech_news_page' %}">Technology</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'econ_news_page' %}">Economics</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'edu_news_page' %}">Education</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'sports_news_page' %}">Sports</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'finance_news_page' %}">Finance</a>
+                                        </li>
+                                        
                                     </ul>
                                     <!-- Search Form -->
                                     <div class="header-search-form mr-auto">
