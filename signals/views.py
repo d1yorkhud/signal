@@ -29,7 +29,7 @@ def news_detail(request, news):
 def homeView(request):
     news_list = News.published.all().order_by('-publish_time')[:10]
     categories = Category.objects.all()
-    world_news = News.published.all().filter(category__name="World").order_by("-publish_time")[1:6]
+    world_news = News.published.all().filter(category__name="World").order_by("-publish_time")[1:2]
     world_main = News.published.filter(category__name="World").order_by("-publish_time")[0]
     tech = News.published.all().filter(category__name="Technology").order_by("-publish_time")[:8]
     econ = News.published.all().filter(category__name="Economics").order_by("-publish_time")[:6]
@@ -131,61 +131,156 @@ def aboutusPageView(request):
 
 
 
-class WorldPageView(ListView):
+class BaseCategoryPageView(ListView):
     model = News
-    template_name = 'news/world.html'
-    context_object_name = 'world_news'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Categories for footer
+        context["categories"] = Category.objects.all()
+
+        # Right sidebar
+        context["sports"] = (
+            News.published
+            .filter(category__name="Sports")
+            .order_by("-publish_time")[:2]
+        )
+
+        context["edu"] = (
+            News.published
+            .filter(category__name="Education")
+            .order_by("-publish_time")[:3]
+        )
+
+
+        return context
+
+
+class WorldPageView(BaseCategoryPageView):
+    template_name = "news/world.html"
+    context_object_name = "world_news"
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name="World")
-        return news
+        return News.published.filter(
+            category__name="World"
+        ).order_by("-publish_time")
 
 
-class TechPageView(ListView):
-    model = News
-    template_name = 'news/tech.html'
-    context_object_name = 'tech_news'
-
-    def get_queryset(self):
-        news = self.model.published.all().filter(category__name="Technology")
-        return news
-
-
-class EconPageView(ListView):
-    model = News
-    template_name = 'news/econ.html'
-    context_object_name = 'econ_news'
+class TechPageView(BaseCategoryPageView):
+    template_name = "news/tech.html"
+    context_object_name = "tech_news"
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name="Economics")
-        return news
+        return News.published.filter(
+            category__name="Technology"
+        ).order_by("-publish_time")
 
 
-class EduPageView(ListView):
-    model = News
-    template_name = 'news/edu.html'
-    context_object_name = 'edu_news'
-
-    def get_queryset(self):
-        news = self.model.published.all().filter(category__name="Education")
-        return news
-
-
-class SportsPageView(ListView):
-    model = News
-    template_name = 'news/sports.html'
-    context_object_name = 'sports_news'
+class EconPageView(BaseCategoryPageView):
+    template_name = "news/econ.html"
+    context_object_name = "econ_news"
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name="Sports")
-        return news
+        return News.published.filter(
+            category__name="Economics"
+        ).order_by("-publish_time")
 
 
-class FinancePageView(ListView):
-    model = News
-    template_name = 'news/finance.html'
-    context_object_name = 'finance_news'
+class EduPageView(BaseCategoryPageView):
+    template_name = "news/edu.html"
+    context_object_name = "edu_news"
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name="Finance")
-        return news
+        return News.published.filter(
+            category__name="Education"
+        ).order_by("-publish_time")
+
+
+class SportsPageView(BaseCategoryPageView):
+    template_name = "news/sports.html"
+    context_object_name = "sports_news"
+
+    def get_queryset(self):
+        return News.published.filter(
+            category__name="Sports"
+        ).order_by("-publish_time")
+
+
+class FinancePageView(BaseCategoryPageView):
+    template_name = "news/finance.html"
+    context_object_name = "finance_news"
+
+    def get_queryset(self):
+        return News.published.filter(
+            category__name="Finance"
+        ).order_by("-publish_time")
+
+
+
+
+
+
+
+
+
+
+
+# class WorldPageView(ListView):
+#     model = News
+#     template_name = 'news/world.html'
+#     context_object_name = 'world_news'
+
+#     def get_queryset(self):
+#         news = self.model.published.all().filter(category__name="World")
+#         return news
+
+
+# class TechPageView(ListView):
+#     model = News
+#     template_name = 'news/tech.html'
+#     context_object_name = 'tech_news'
+
+#     def get_queryset(self):
+#         news = self.model.published.all().filter(category__name="Technology")
+#         return news
+
+
+# class EconPageView(ListView):
+#     model = News
+#     template_name = 'news/econ.html'
+#     context_object_name = 'econ_news'
+
+#     def get_queryset(self):
+#         news = self.model.published.all().filter(category__name="Economics")
+#         return news
+
+
+# class EduPageView(ListView):
+#     model = News
+#     template_name = 'news/edu.html'
+#     context_object_name = 'edu_news'
+
+#     def get_queryset(self):
+#         news = self.model.published.all().filter(category__name="Education")
+#         return news
+
+
+# class SportsPageView(ListView):
+#     model = News
+#     template_name = 'news/sports.html'
+#     context_object_name = 'sports_news'
+
+#     def get_queryset(self):
+#         news = self.model.published.all().filter(category__name="Sports")
+#         return news
+
+
+# class FinancePageView(ListView):
+#     model = News
+#     template_name = 'news/finance.html'
+#     context_object_name = 'finance_news'
+
+#     def get_queryset(self):
+#         news = self.model.published.all().filter(category__name="Finance")
+#         return news
