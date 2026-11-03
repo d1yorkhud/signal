@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.http import HttpResponse
 from .models import News, Category
 from .forms import ContactForm
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
 
 
 
@@ -219,6 +220,17 @@ class FinancePageView(BaseCategoryPageView):
 
 
 
+class NewsUpdateView(UpdateView):
+    model = News
+    fields = ('title', 'body', 'image', 'category', 'status',)
+    template_name = 'crud/news_edit.html' 
+
+
+
+class NewsDeleteView(DeleteView):
+    model = News
+    template_name = 'crud/news_delete.html'
+    success_url = reverse_lazy('home_page')
 
 
 
