@@ -234,6 +234,13 @@ class NewsDeleteView(DeleteView):
 
 
 
+class NewsCreateView(CreateView):
+    model = News
+    template_name = 'crud/news_create.html'
+    fields = ('title', 'slug', 'body', 'image', 'category', 'status')
+
+
+
 
 
 
