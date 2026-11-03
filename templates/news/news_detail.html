@@ -265,8 +265,23 @@
 
     </article>
 
+    <div class="card-footer text-center py-3" style="background: #f8f9fa; border-top: 1px solid #eee;">
+
+    <a href="{% url 'news_update' news.slug %}"
+       class="btn btn-primary px-4 mr-2"
+       style="border-radius: 5px;">
+        <i class="fa fa-pencil"></i> Edit Article
+    </a>
+
+    <a href="{% url 'news_delete' news.slug %}"
+       class="btn btn-danger px-4"
+       style="border-radius: 5px;">
+        <i class="fa fa-trash"></i> Delete Article
+    </a>
+
 </div>
 
+</div>
 
 
 
