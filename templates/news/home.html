@@ -159,9 +159,22 @@
                             <a href="#"><img src="{% static 'images/bg-img/top-advert.png' %}" alt="header-add"></a>
                         </div>
                     </div>
+                    
                 </div>
+
             </div>
+
         </div>
+
+        <div>
+                        {% if request.user.is_authenticated %}
+                        <p> <a href="{% url 'user_profile' %}" style="color: blue;">My profile</a> </p>
+                        {% else %}
+                        <p><a href="{% url 'login' %}" style="color: yellowgreen;"></a></p>
+                        {% endif %}
+                        <p>{% now "jS F Y H:i" %}</p>
+                    </div>
+
         <!-- Bottom Header Area -->
         <div class="bottom-header">
             <div class="container h-100">
