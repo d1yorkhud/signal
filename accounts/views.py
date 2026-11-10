@@ -13,7 +13,7 @@ def user_login(request):
             user = authenticate(request, username=data['username'], password=data['password'])
 
             if user is not None:
-                if user.is_active():
+                if user.is_active:
                     login(request, user)
                     return HttpResponse('Logged in successfully!')
                 else:

@@ -1,14 +1,98 @@
+
 {% load static %}
-{% block title %} Login page {% endblock title %}
+
+{% block title %}Login | Signal{% endblock title %}
 
 {% block content %}
 
-<h2>Login</h2>
-<p>Please, submit the form to login the website!</p>
+<div style="
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f4f8;
+    padding: 60px 20px;
+">
 
-<form method="post">{% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Login</button>
-</form>
+    <div style="
+        width: 100%;
+        max-width: 520px;
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    ">
+
+        <!-- Header -->
+        <div style="
+            background: #202a44;
+            padding: 45px 30px;
+            text-align: center;
+        ">
+            <h1 style="
+                color: white;
+                font-size: 34px;
+                font-weight: 700;
+                margin: 0 0 12px;
+            ">
+                Welcome Back
+            </h1>
+
+            <p style="color: #d5dbea; font-size: 16px; margin: 0;">
+                Sign in to continue to Signal
+            </p>
+        </div>
+
+        <!-- Form -->
+        <div style="padding: 45px 40px;">
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div style="font-size: 16px; color: #333;">
+                    {{ form.as_p }}
+                </div>
+
+                <button type="submit" style="
+                    display: block;
+                    width: 100%;
+                    padding: 16px;
+                    margin-top: 25px;
+                    background: #e63946;
+                    color: white;
+                    border: none;
+                    border-radius: 7px;
+                    font-size: 17px;
+                    font-weight: 700;
+                    cursor: pointer;
+                ">
+                    LOGIN →
+                </button>
+            </form>
+
+            <div style="
+                text-align: center;
+                margin-top: 30px;
+                border-top: 1px solid #eee;
+                padding-top: 20px;
+            ">
+                <p style="
+                    color: #202a44;
+                    font-size: 13px;
+                    font-weight: bold;
+                    letter-spacing: 3px;
+                    margin: 0;
+                ">
+                    SIGNAL
+                </p>
+                <p style="color: #999; font-size: 13px; margin-top: 7px;">
+                    Your daily source of news.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
