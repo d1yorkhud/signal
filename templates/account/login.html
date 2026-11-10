@@ -1,0 +1,14 @@
+{% load static %}
+{% block title %} Login page {% endblock title %}
+
+{% block content %}
+
+<h2>Login</h2>
+<p>Please, submit the form to login the website!</p>
+
+<form method="post">{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Login</button>
+</form>
+
+{% endblock content %}
