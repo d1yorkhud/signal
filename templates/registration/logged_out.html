@@ -1,0 +1,16 @@
+
+{% load static %}
+
+{% block title %}Logout | Signal{% endblock title %}
+
+{% block content %}
+
+<h2>Log out</h2>
+<p>You logged out from the website. <a href="{% url 'login' %}">Login again</a></p>
+
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+{% endblock content %}
