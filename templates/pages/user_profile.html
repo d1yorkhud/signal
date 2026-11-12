@@ -4,4 +4,11 @@
 
 {% block content %}
 <h3>Welcome, {{ user.username }}</h3>
+<h2>About you</h2>
+<label>email</label> <input value="{{ user.email }}" readonly><br>
+<label>name</label> <input value="{{ user.first_name }}" readonly><br>
+<label>last name</label> <input value="{{ user.last_name }}" readonly><br>
+
+<h4><a href="">Change Password</a></h4>
+
 {% endblock content %}
