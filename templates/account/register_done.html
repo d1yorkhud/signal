@@ -1,0 +1,10 @@
+{% load static %}
+{% block title %} You have been signed up successfully! {% endblock title %}
+
+{% block content %}
+<h1>{{ new_user.first_name }}</h1>
+<p>You have been signed up successfully!</p>
+<p>You can <a href="{% url 'login' %}">login</a> now.</p>
+
+
+{% endblock content %}
